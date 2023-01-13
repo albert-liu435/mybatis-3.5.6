@@ -20,7 +20,10 @@ import java.util.Collections;
 import java.util.List;
 
 /**
+ * 拦截器链InterceptorChain
  * Interceptor对象都是通过该实例进行管理的
+ * 参考 https://www.cnblogs.com/qdhxhz/p/11390778.html
+ *
  * @author Clinton Begin
  */
 public class InterceptorChain {
@@ -29,6 +32,8 @@ public class InterceptorChain {
 
   public Object pluginAll(Object target) {
     for (Interceptor interceptor : interceptors) {
+      //循环调用每个Interceptor.plugin方法
+
       target = interceptor.plugin(target);
     }
     return target;
